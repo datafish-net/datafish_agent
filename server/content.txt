@@ -1,0 +1,84 @@
+Contacts
+
+What you can do with Contacts
+
+The Fulfil API lets you do the following with the Contact resource. More detailed versions of these general actions may be available:
+
+- The Contact object
+- Retrieve a list of Contacts
+- Retrieve a count of Contacts
+- Retrieve a specific Contact
+- Create Contact
+- Update Contact
+- Delete Contact
+- Archive Contact
+- Restore Contact
+- Search and Filter Contacts
+
+The Contact object
+
+Attributes
+
+ID - Unique ID of the record (Readonly)
+
+Name - Name of the contact. This could be a business name if this is a business or the full name of a person if the contact is an individual.
+
+More attributes:
+
+- Accepts Marketing - Indicates whether the contact accepts marketing emails
+- Account Manager - Account manager of the contact (usually for wholesale customers)
+- Account Payable - Default payable account used when A/P invoices are posted for the supplier
+- Account Receivable - Default receivable account used when A/R invoices are posted for the customer
+- Active - False when archived
+- Addresses - A contact can have multiple addresses
+- Attachments - List of documents attached to the record
+- Average PO Value - Average PO values for suppliers (Readonly)
+- Average Order Value - Average order value for customers
+- Categories - Categories the contact belongs to
+- Code - Contact code is usually automatically generated. However, you can also specify a code when creating a contact if one exists.
+- Contact Mechanisms - A contact can have many communication methods (like phone, email, fax)
+- Created At - UTC timestamp when the record was created (Readonly)
+- Credit Amount - Credit amount on account (Readonly)
+- Credit Available - Credit limit available (Readonly)
+- Credit Limit Amount - Amount of credit limit allocated to the customer
+- Customer Payment Term - Default payment term when new orders and AR Invoices are placed
+- Customer Tax Rule - Tax rule override for the customer
+- Default Payment Profile (Readonly)
+- Email - Default email of the contact (Readonly)
+- Fax - Default fax number (Readonly)
+- Is Customer - Indicates if the contact is a customer
+- Is Supplier - Indicates if the contact is a supplier
+- Mobile - Default mobile number (Readonly)
+- Phone - Default phone number (Readonly)
+- Website - Website of the contact (Readonly)
+
+API Endpoints:
+
+Retrieve a specific Contact:
+GET /model/party.party/{id}
+
+Retrieve a list of Contacts:
+GET /model/party.party
+
+Retrieve a count of Contacts:
+GET /model/party.party/count
+
+Create Contact:
+POST /model/party.party
+
+Update Contact:
+PUT /model/party.party/{id}
+
+Delete Contact:
+DELETE /model/party.party/{id}
+
+Archive Contact:
+PUT /model/party.party/{id}/archive
+
+Restore Contact:
+PUT /model/party.party/{id}/restore
+
+Advanced search & filter:
+PUT /model/party.party/search
+PUT /model/party.party/search_count
+PUT /model/party.party/search_read 

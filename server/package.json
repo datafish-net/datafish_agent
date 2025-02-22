@@ -1,0 +1,20 @@
+{
+  "name": "aethera",
+  "version": "1.0.0",
+  "main": "node_web_extractor.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@mozilla/readability": "^0.5.0",
+    "axios": "^1.7.9",
+    "express": "^4.21.2",
+    "jsdom": "^26.0.0",
+    "node-fetch": "^3.3.2"
+  }
+}

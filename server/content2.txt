@@ -1,0 +1,100 @@
+Contact Methods
+
+What you can do with Contact Methods
+
+The Fulfil API lets you do the following with the Contact method resource. More detailed versions of these general actions may be available:
+
+- The Contact method object
+- Retrieve a list of Contact methods
+- Retrieve a count of Contact methods
+- Retrieve a specific Contact method
+- Create Contact method
+- Update Contact method
+- Delete Contact method
+- Archive Contact method
+- Restore Contact method
+- Search and Filter Contact methods
+
+The Contact Method object
+
+Attributes:
+
+Comment - Comments. Usually used for notes like "Don't call after 5"
+ID - Unique ID of the record (Readonly)
+Name - Optional name of the contact or department this method is associated to
+Type - Supported types include:
+  - phone
+  - mobile
+  - fax
+  - email
+  - website
+  - skype
+  - sip
+  - irc
+  - jabber
+  - other
+  - twitter
+  - facebook
+  - instagram
+Value - The contact method value
+
+More attributes:
+
+- Active - Set to false to archive a contact method
+- Attachments - List of documents attached to the record
+- Created At - UTC timestamp when the record was created (Readonly)
+- Create User - ID of the user that created the record (Readonly)
+- Email - Email address
+- Facebook - Facebook contact
+- Instagram - Instagram contact
+- Metadata - A JSON field that can be used to store custom data
+- Other Value - Value for other contact types
+- Sequence - Order sequence
+- SIP - SIP contact
+- Skype - Skype contact
+- Twitter - Twitter handle
+- URL - Website URL
+- Website - Website address
+- Write Date - UTC timestamp when record was last updated (Readonly)
+- Write User - ID of user that last updated the record (Readonly)
+
+API Endpoints:
+
+Retrieve a specific Contact method:
+GET /model/party.contact_mechanism/{id}
+
+Retrieve a list of Contact methods:
+GET /model/party.contact_mechanism
+
+Retrieve a count of Contact methods:
+GET /model/party.contact_mechanism/count
+
+Create Contact method:
+POST /model/party.contact_mechanism
+
+Update Contact method:
+PUT /model/party.contact_mechanism/{id}
+
+Delete Contact method:
+DELETE /model/party.contact_mechanism/{id}
+
+Archive Contact method:
+PUT /model/party.contact_mechanism/{id}/archive
+
+Restore Contact method:
+PUT /model/party.contact_mechanism/{id}/restore
+
+Advanced search & filter:
+PUT /model/party.contact_mechanism/search
+PUT /model/party.contact_mechanism/search_count
+PUT /model/party.contact_mechanism/search_read
+
+Supported URL parameters:
+- since_id: Show Contact methods with an id greater than given id
+- ids: Retrieve only Contact methods specified by a comma-separated list of order IDs
+- created_at_min: Show Contact methods created at or after date (format: 2020-12-25T16:15:47) UTC date times
+- created_at_max: Show Contact methods created at or before date (format: 2020-12-25T16:15:47) UTC date times
+- updated_at_min: Show Contact methods updated at or after date (format: 2020-12-25T16:15:47) UTC date times
+- updated_at_max: Show Contact methods updated at or before date (format: 2020-12-25T16:15:47) UTC date times
+- per_page: The maximum number of results to show on a page (max 500)
+- page: The page of results to display 

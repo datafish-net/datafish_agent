@@ -15,7 +15,7 @@ class IntegrationService:
             raise ValueError("OPENAI_API_KEY environment variable is not set")
             
         self.llm = ChatOpenAI(
-            model="gpt-3.5-turbo",  # Use 'model' instead of 'model_name'
+            model="gpt-4o-mini",  
             temperature=0,
             api_key=api_key,
             max_retries=3,
@@ -26,12 +26,16 @@ class IntegrationService:
             return_messages=True
         )
     
-    def execute(self, source_platform: str, target_platform: str, source_data: Dict) -> Dict:
+    def execute(self, source_platform: str, target_platform: str, source_token: str, target_token: str) -> Dict:
         """Execute integration between platforms using AI."""
         try:
             # Load platform documentation
             source_docs = self._load_documentation(source_platform)
             target_docs = self._load_documentation(target_platform)
+            
+            # Add tokens to environment for generated code to use
+            os.environ[f'{source_platform.upper()}_TOKEN'] = source_token
+            os.environ[f'{target_platform.upper()}_TOKEN'] = target_token
             
             # First, generate code to fetch sample data from both platforms
             sample_data_code = self._generate_sample_data_code(
@@ -44,19 +48,31 @@ class IntegrationService:
             # Execute sample data fetching code
             sample_data = self._execute_sample_data_code(sample_data_code)
             
+            if 'error' in sample_data:
+                return sample_data
+            
             # Now generate integration code with sample data understanding
             code = self._generate_integration_code(
-                source_platform, target_platform,
-                source_docs, target_docs,
-                source_data,
+                source_platform, 
+                target_platform,
+                source_docs, 
+                target_docs,
                 sample_data
             )
             
             # Execute generated code
-            result = self._execute_generated_code(code, source_data)
+            result = self._execute_generated_code(code)
+            
+            # Clean up environment variables
+            os.environ.pop(f'{source_platform.upper()}_TOKEN', None)
+            os.environ.pop(f'{target_platform.upper()}_TOKEN', None)
+            
             return result
             
         except Exception as e:
+            # Clean up environment variables in case of error
+            os.environ.pop(f'{source_platform.upper()}_TOKEN', None)
+            os.environ.pop(f'{target_platform.upper()}_TOKEN', None)
             return {'error': f"Integration failed: {str(e)}"}
     
     def _load_documentation(self, platform: str) -> str:
@@ -95,7 +111,7 @@ class IntegrationService:
             {target_docs}
 
             Requirements:
-            1. Use environment variables for credentials
+            1. Use environment variables for tokens ({source_platform.upper()}_TOKEN and {target_platform.upper()}_TOKEN)
             2. Include proper error handling
             3. Use async/await for API calls
             4. Include type hints
@@ -114,7 +130,6 @@ class IntegrationService:
         target_platform: str,
         source_docs: str,
         target_docs: str,
-        source_data: Dict,
         sample_data: Dict
     ) -> Dict:
         """Generate integration code using LangChain."""
@@ -144,11 +159,8 @@ class IntegrationService:
             Target Platform Sample Data Structure:
             {sample_data['target_sample']}
 
-            Current Source Data to Process:
-            {source_data}
-
             Requirements:
-            1. Use environment variables for credentials
+            1. Use environment variables for tokens ({source_platform.upper()}_TOKEN and {target_platform.upper()}_TOKEN)
             2. Include proper error handling
             3. Use async/await for API calls
             4. Include type hints
@@ -206,7 +218,7 @@ async def fetch_sample_data():
         except Exception as e:
             return {'error': f"Sample data fetching failed: {str(e)}"}
 
-    def _execute_generated_code(self, code: Dict, source_data: Dict) -> Dict:
+    def _execute_generated_code(self, code: Dict) -> Dict:
         """Execute AI-generated integration code."""
         import tempfile
         import importlib.util
@@ -243,7 +255,7 @@ async def execute_integration(source_data):
             spec.loader.exec_module(module)
             
             # Execute integration
-            result = asyncio.run(module.execute_integration(source_data))
+            result = asyncio.run(module.execute_integration())
             
             # Cleanup
             os.unlink(f.name)

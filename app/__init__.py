@@ -15,8 +15,9 @@ def create_app():
     CORS(app, supports_credentials=True)
     Session(app)
     
-    from .routes import integrations, knowledge
+    from .routes import integrations, knowledge, auth
     app.register_blueprint(integrations.bp)
     app.register_blueprint(knowledge.bp)
+    app.register_blueprint(auth.bp)
     
     return app

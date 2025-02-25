@@ -10,8 +10,7 @@ def execute_integration():
     try:
         result = integration_service.execute(
             source_platform=data['sourcePlatform'],
-            target_platform=data['targetPlatform'],
-            source_data=data.get('data', {})
+            target_platform=data['targetPlatform']
         )
         return jsonify(result)
     except Exception as e:

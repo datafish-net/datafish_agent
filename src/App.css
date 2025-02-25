@@ -1,0 +1,369 @@
+:root {
+  --primary-color: #FF4F00;
+  --secondary-color: #FF6B2C;
+  --text-color: #2D2D2D;
+  --text-light: #6B7280;
+  --background-light: #F9FAFB;
+  --border-color: #E5E7EB;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  color: var(--text-color);
+}
+
+.navbar {
+  background: white;
+  border-bottom: 1px solid var(--border-color);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.nav-cta {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.hero {
+  padding: 8rem 2rem 4rem;
+  background: linear-gradient(to bottom, white, var(--background-light));
+}
+
+.hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+.hero-text {
+  flex: 1;
+  text-align: left;
+}
+
+.hero h1 {
+  font-size: 4rem;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+  font-weight: 900;
+  letter-spacing: -0.025em;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  line-height: 1.4;
+  color: var(--text-color);
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.hero-visual {
+  flex: 1;
+}
+
+.primary-button {
+  background: #ff4f00;
+  color: white;
+  border: none;
+  padding: 0.875rem 1.75rem;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.primary-button:hover {
+  background: #e64500;
+}
+
+.secondary-button {
+  background: white;
+  color: #2d2d2d;
+  border: 1px solid #e5e7eb;
+  padding: 0.875rem 1.75rem;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.secondary-button:hover {
+  background: #f9fafb;
+  border-color: #d1d5db;
+}
+
+.secondary-button img {
+  width: 18px;
+  height: 18px;
+}
+
+.integration-diagram {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 400px;
+  margin: 2rem auto;
+}
+
+.center-hub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  background: var(--primary-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(255, 79, 0, 0.3);
+  z-index: 2;
+}
+
+.hub-text {
+  color: white;
+  font-weight: bold;
+}
+
+.integration-apps {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.app-icon {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform-origin: 50% 50%; /* Corrected transform origin */
+  animation: rotateIcon 20s linear infinite;
+}
+
+.app-icon.slack { background-image: url('https://upload.wikimedia.org/wikipedia/commons/d/d5/Slack_icon_2019.svg'); }
+.app-icon.salesforce { background-image: url('https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg'); }
+.app-icon.google-ads { background-image: url('https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Ads_logo.svg'); }
+.app-icon.oracle { background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg'); }
+.app-icon.s3 { background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/bc/Amazon-S3-Logo.svg'); }
+.app-icon.facebook { background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png'); }
+.app-icon.mongodb { background-image: url('https://webimages.mongodb.com/_com_assets/cms/mongodb_logo1-76twgcu2dm.png'); }
+.app-icon.wordpress { background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/98/WordPress_blue_logo.svg'); }
+.app-icon.trello { background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/7a/Trello-logo-blue.svg'); }
+.app-icon.quickbooks { background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/95/Intuit_QuickBooks_logo.svg'); }
+
+
+/* Corrected positioning using trigonometry */
+:root {
+  --radius: 150px; /* Radius of the circle */
+}
+
+.integration-apps {
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.integration-apps .app-icon {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  /* Counter-rotate to keep logos upright */
+  animation: counter-rotate 20s linear infinite;
+}
+
+@keyframes counter-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+
+/* Position all 10 logos in a circle with equal spacing */
+.app-icon:nth-child(1) { top: calc(50% - 150px); left: 50%; transform: translateX(-50%); }
+.app-icon:nth-child(2) { top: calc(50% - 115px); right: calc(50% - 115px); }
+.app-icon:nth-child(3) { top: calc(50% - 40px); right: calc(50% - 150px); }
+.app-icon:nth-child(4) { top: calc(50% + 40px); right: calc(50% - 115px); }
+.app-icon:nth-child(5) { top: calc(50% + 150px); left: 50%; transform: translateX(-50%); }
+.app-icon:nth-child(6) { top: calc(50% + 40px); left: calc(50% - 115px); }
+.app-icon:nth-child(7) { top: calc(50% - 40px); left: calc(50% - 150px); }
+.app-icon:nth-child(8) { top: calc(50% - 115px); left: calc(50% - 115px); }
+.app-icon:nth-child(9) { top: 50%; right: calc(50% - 150px); transform: translateY(-50%); }
+.app-icon:nth-child(10) { top: 50%; left: calc(50% - 150px); transform: translateY(-50%); }
+
+
+
+.section-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.feature-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+
+.feature-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.cta-section {
+  background: var(--background-light);
+  text-align: center;
+}
+
+.cta-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.cta-section p {
+  color: var(--text-light);
+  margin-bottom: 2rem;
+}
+
+footer {
+  background: white;
+  border-top: 1px solid var(--border-color);
+  padding: 4rem 2rem 2rem;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.footer-links {
+  display: flex;
+  gap: 4rem;
+}
+
+.footer-column h4 {
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.footer-column a {
+  display: block;
+  color: var(--text-light);
+  text-decoration: none;
+  margin-bottom: 0.5rem;
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 2rem auto 0;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+  color: var(--text-light);
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 2rem;
+  }
+}

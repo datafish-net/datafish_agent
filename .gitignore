@@ -30,3 +30,5 @@ yarn-error.log*
 .vscode/
 *.swp
 *.swo
+server/generated_files/hello_world.py
+server/generated_files/weather_report.py

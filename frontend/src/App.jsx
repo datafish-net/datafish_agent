@@ -1,23 +1,29 @@
 import React from 'react';
-import Terminal from './components/Terminal';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/landing/HomePage';
+import AboutPage from './pages/landing/AboutPage';
+import FeaturesPage from './pages/landing/FeaturesPage';
+import PricingPage from './pages/landing/PricingPage';
+import TerminalPage from './pages/terminal/TerminalPage';
+import LandingLayout from './layouts/LandingLayout';
 import './App.css';
 
 function App() {
   return (
-    <div className="app">
-      <header className="app-header">
-        <h1>AI Terminal Agent</h1>
-        <p>A powerful terminal interface with AI capabilities</p>
-      </header>
-      
-      <main className="app-main">
-        <Terminal />
-      </main>
-      
-      <footer className="app-footer">
-        <p>Built with React, FastAPI, and OpenAI</p>
-      </footer>
-    </div>
+    <Router>
+      <Routes>
+        {/* Landing pages */}
+        <Route element={<LandingLayout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/features" element={<FeaturesPage />} />
+          <Route path="/pricing" element={<PricingPage />} />
+        </Route>
+        
+        {/* Terminal page */}
+        <Route path="/terminal" element={<TerminalPage />} />
+      </Routes>
+    </Router>
   );
 }
 

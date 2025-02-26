@@ -58,14 +58,14 @@ const Terminal = () => {
     };
 
     setHistory([...history, newHistoryItem]);
-    
+
     // Add to command history for up/down navigation
     setCommandHistory([...commandHistory, input]);
     setHistoryIndex(-1);
-    
+
     // Clear input
     setInput('');
-    
+
     // Set loading state
     setIsLoading(true);
 
@@ -87,31 +87,31 @@ const Terminal = () => {
       setHistory(prevHistory => {
         const updatedHistory = [...prevHistory];
         const lastIndex = updatedHistory.length - 1;
-        
+
         updatedHistory[lastIndex] = {
           ...updatedHistory[lastIndex],
           output: response.data.output,
           isError: response.data.status !== 0,
           isLoading: false
         };
-        
+
         return updatedHistory;
       });
     } catch (error) {
       console.error('Error executing command:', error);
-      
+
       // Update the history item with the error
       setHistory(prevHistory => {
         const updatedHistory = [...prevHistory];
         const lastIndex = updatedHistory.length - 1;
-        
+
         updatedHistory[lastIndex] = {
           ...updatedHistory[lastIndex],
           output: `Error: ${error.message}`,
           isError: true,
           isLoading: false
         };
-        
+
         return updatedHistory;
       });
     } finally {
@@ -124,7 +124,7 @@ const Terminal = () => {
     if (e.key === 'Enter') {
       executeCommand();
     }
-    
+
     // Handle Up arrow to navigate command history
     if (e.key === 'ArrowUp') {
       e.preventDefault();
@@ -134,7 +134,7 @@ const Terminal = () => {
         setInput(commandHistory[commandHistory.length - 1 - newIndex]);
       }
     }
-    
+
     // Handle Down arrow to navigate command history
     if (e.key === 'ArrowDown') {
       e.preventDefault();
@@ -147,18 +147,18 @@ const Terminal = () => {
         setInput('');
       }
     }
-    
+
     // Handle Tab for auto-completion (basic implementation)
     if (e.key === 'Tab') {
       e.preventDefault();
-      
+
       // Simple auto-completion for common commands
       const commonCommands = [
         'help', 'ls', 'cat', 'pwd', 'echo', 'date', 'whoami', 'clear',
-        'ai:', 'ai:code:', 'ai:model:', 
+        'ai:', 'ai:code:', 'ai:model:',
         'file:list', 'file:view', 'file:run', 'file:create'
       ];
-      
+
       for (const cmd of commonCommands) {
         if (cmd.startsWith(input) && cmd !== input) {
           setInput(cmd);
@@ -171,10 +171,10 @@ const Terminal = () => {
   // Format the output with syntax highlighting for code blocks
   const formatOutput = (output) => {
     if (!output) return null;
-    
+
     // Split by code blocks
     const parts = output.split('```');
-    
+
     return parts.map((part, index) => {
       // Even indices are regular text, odd indices are code blocks
       if (index % 2 === 0) {
@@ -215,8 +215,8 @@ const Terminal = () => {
         </div>
         <div className="terminal-title">AI Terminal Agent</div>
         <div className="terminal-actions">
-          <button 
-            className="terminal-clear-btn" 
+          <button
+            className="terminal-clear-btn"
             onClick={clearTerminal}
             title="Clear terminal (clear)"
           >
@@ -224,7 +224,7 @@ const Terminal = () => {
           </button>
         </div>
       </div>
-      
+
       <div className="terminal-output" ref={outputRef}>
         <div className="command-history">
           {history.map((item, index) => (
@@ -246,7 +246,7 @@ const Terminal = () => {
           ))}
         </div>
       </div>
-      
+
       <div className="terminal-input-container">
         <span className="terminal-prompt">$</span>
         <input
@@ -259,8 +259,8 @@ const Terminal = () => {
           ref={inputRef}
           disabled={isLoading}
         />
-        <button 
-          className="terminal-button" 
+        <button
+          className="terminal-button"
           onClick={executeCommand}
           disabled={isLoading}
         >

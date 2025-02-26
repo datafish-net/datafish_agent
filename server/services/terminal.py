@@ -26,6 +26,10 @@ async def execute_terminal_command(command: str) -> CommandResponse:
     if command == "help":
         return CommandResponse(output=get_help_text(), status=0)
     
+    # Handle clear command
+    if command == "clear":
+        return CommandResponse(output="__CLEAR__", status=0)
+    
     # Handle AI commands
     if command.startswith("ai:"):
         return await handle_ai_command(command[3:].strip())

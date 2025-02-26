@@ -1,44 +1,24 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import './App.css'
-// Landing pages
-import HomePage from './pages/landing/HomePage'
-import AboutPage from './pages/landing/AboutPage'
-import FeaturesPage from './pages/landing/FeaturesPage'
-import PricingPage from './pages/landing/PricingPage'
-// Dashboard pages
-import DashboardLayout from './layouts/DashboardLayout'
-import DashboardHome from './pages/dashboard/DashboardHome'
-import Integrations from './pages/dashboard/Integrations'
-import Settings from './pages/dashboard/Settings'
-// Layouts and components
-import LandingLayout from './layouts/LandingLayout'
-import NotFound from './pages/NotFound'
-import Agent from './pages/agent/agent'
-export default function App() {
+import React from 'react';
+import Terminal from './components/Terminal';
+import './App.css';
+
+function App() {
   return (
-    <Router>
-      <Routes>
-        {/* Landing pages */}
-        <Route element={<LandingLayout />}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/features" element={<FeaturesPage />} />
-          <Route path="/pricing" element={<PricingPage />} />
-        </Route>
-
-        {/* Dashboard pages */}
-        <Route path="/dashboard" element={<DashboardLayout />}>
-          <Route index element={<DashboardHome />} />
-          <Route path="integrations" element={<Integrations />} />
-          <Route path="settings" element={<Settings />} />
-        </Route>
-
-        {/* Agent pages */}
-        <Route path="/agent" element={<Agent />} />
-
-        {/* 404 page */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Router>
-  )
+    <div className="app">
+      <header className="app-header">
+        <h1>AI Terminal Agent</h1>
+        <p>A powerful terminal interface with AI capabilities</p>
+      </header>
+      
+      <main className="app-main">
+        <Terminal />
+      </main>
+      
+      <footer className="app-footer">
+        <p>Built with React, FastAPI, and OpenAI</p>
+      </footer>
+    </div>
+  );
 }
+
+export default App;

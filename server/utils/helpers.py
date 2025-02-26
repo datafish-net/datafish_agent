@@ -17,6 +17,7 @@ Available commands:
 - python/python3: Run Python code
 - node: Run JavaScript code
 - npm: Node package manager
+- clear: Clear the terminal screen
 - help: Display this help message
 
 AI Commands:

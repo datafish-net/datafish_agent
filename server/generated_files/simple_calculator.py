@@ -2,68 +2,65 @@
 
 import sys
 
-def add(x, y):
-    """Return the sum of x and y."""
-    return x + y
+def add(a, b):
+    """Return the sum of a and b."""
+    return a + b
 
-def subtract(x, y):
-    """Return the difference of x and y."""
-    return x - y
+def subtract(a, b):
+    """Return the difference of a and b."""
+    return a - b
 
-def multiply(x, y):
-    """Return the product of x and y."""
-    return x * y
+def multiply(a, b):
+    """Return the product of a and b."""
+    return a * b
 
-def divide(x, y):
-    """Return the quotient of x and y. Raises ValueError if y is zero."""
-    if y == 0:
+def divide(a, b):
+    """Return the quotient of a and b. Raises ValueError if b is zero."""
+    if b == 0:
         raise ValueError("Cannot divide by zero.")
-    return x / y
+    return a / b
 
-def calculator(operation, x, y):
-    """Perform the specified operation on x and y."""
-    if operation == 'add':
-        return add(x, y)
-    elif operation == 'subtract':
-        return subtract(x, y)
-    elif operation == 'multiply':
-        return multiply(x, y)
-    elif operation == 'divide':
-        return divide(x, y)
+def calculator():
+    """Simple calculator that performs addition, subtraction, multiplication, and division."""
+    print("Welcome to the Simple Calculator!")
+    print("Please select an operation:")
+    print("1. Add")
+    print("2. Subtract")
+    print("3. Multiply")
+    print("4. Divide")
+
+    operation = input("Enter the operation number (1/2/3/4): ")
+    num1 = float(input("Enter the first number: "))
+    num2 = float(input("Enter the second number: "))
+
+    if operation == '1':
+        print(f"{num1} + {num2} = {add(num1, num2)}")
+    elif operation == '2':
+        print(f"{num1} - {num2} = {subtract(num1, num2)}")
+    elif operation == '3':
+        print(f"{num1} * {num2} = {multiply(num1, num2)}")
+    elif operation == '4':
+        try:
+            print(f"{num1} / {num2} = {divide(num1, num2)}")
+        except ValueError as e:
+            print(e)
     else:
-        raise ValueError("Invalid operation. Use 'add', 'subtract', 'multiply', or 'divide'.")
-
-def main():
-    """Main function to take user input and perform calculations."""
-    print("Simple Calculator")
-    operation = input("Enter operation (add, subtract, multiply, divide): ").strip().lower()
-    x = float(input("Enter first number: "))
-    y = float(input("Enter second number: "))
-    
-    try:
-        result = calculator(operation, x, y)
-        print(f"The result of {operation}ing {x} and {y} is: {result}")
-    except ValueError as e:
-        print(e)
+        print("Invalid operation selected.")
 
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "--demo":
-        # Demo mode with sample inputs
-        print("Demo mode activated.")
-        demo_operations = [
-            ('add', 5, 3),
-            ('subtract', 10, 4),
-            ('multiply', 7, 6),
-            ('divide', 8, 2),
-            ('divide', 8, 0)  # This will raise an error
-        ]
-        
-        for operation, x, y in demo_operations:
-            try:
-                result = calculator(operation, x, y)
-                print(f"The result of {operation}ing {x} and {y} is: {result}")
-            except ValueError as e:
-                print(f"Error: {e}")
-                
+        # Run with sample inputs in demo mode
+        print("Demo mode: Performing a series of calculations.")
+        print("1. Add 5 and 3")
+        print(f"Result: {add(5, 3)}")
+        print("2. Subtract 10 from 6")
+        print(f"Result: {subtract(10, 6)}")
+        print("3. Multiply 4 and 7")
+        print(f"Result: {multiply(4, 7)}")
+        print("4. Divide 8 by 2")
+        try:
+            print(f"Result: {divide(8, 2)}")
+        except ValueError as e:
+            print(e)
     else:
-        main()
+        calculator()

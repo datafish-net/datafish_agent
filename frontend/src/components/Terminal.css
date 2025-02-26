@@ -1,0 +1,225 @@
+.terminal-container {
+  width: 90%;
+  height: 80vh;
+  margin: 2rem auto;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  background-color: #1e1e2e;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Menlo', 'Monaco', 'Courier New', monospace;
+}
+
+.terminal-header {
+  background-color: #2d2d3a;
+  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #3d3d4a;
+}
+
+.terminal-title {
+  color: #cdd6f4;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.terminal-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.terminal-control {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.terminal-control.close {
+  background-color: #f38ba8;
+}
+
+.terminal-control.minimize {
+  background-color: #f9e2af;
+}
+
+.terminal-control.maximize {
+  background-color: #a6e3a1;
+}
+
+.terminal-output {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  color: #cdd6f4;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  font-size: 0.95rem;
+}
+
+.terminal-output::-webkit-scrollbar {
+  width: 8px;
+}
+
+.terminal-output::-webkit-scrollbar-track {
+  background: #2d2d3a;
+}
+
+.terminal-output::-webkit-scrollbar-thumb {
+  background: #45475a;
+  border-radius: 4px;
+}
+
+.terminal-output::-webkit-scrollbar-thumb:hover {
+  background: #585b70;
+}
+
+.terminal-input-container {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: #1e1e2e;
+  border-top: 1px solid #3d3d4a;
+}
+
+.terminal-prompt {
+  color: #a6e3a1;
+  margin-right: 0.5rem;
+  font-weight: bold;
+}
+
+.terminal-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #cdd6f4;
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  padding: 0.5rem 0;
+}
+
+.terminal-button {
+  background-color: #89b4fa;
+  color: #1e1e2e;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  margin-left: 0.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.terminal-button:hover {
+  background-color: #74c7ec;
+}
+
+.terminal-button:active {
+  background-color: #89dceb;
+}
+
+.command-history {
+  margin-bottom: 1rem;
+}
+
+.command-entry {
+  margin-bottom: 1rem;
+}
+
+.command-prompt {
+  color: #a6e3a1;
+  font-weight: bold;
+}
+
+.command-text {
+  color: #cdd6f4;
+}
+
+.command-output {
+  color: #bac2de;
+  margin-top: 0.5rem;
+  white-space: pre-wrap;
+}
+
+.error-output {
+  color: #f38ba8;
+}
+
+.ai-output {
+  border-left: 2px solid #89b4fa;
+  padding-left: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.file-output {
+  border-left: 2px solid #a6e3a1;
+  padding-left: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+/* Syntax highlighting for code blocks */
+.code-block {
+  background-color: #2d2d3a;
+  border-radius: 4px;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  overflow-x: auto;
+}
+
+/* Blinking cursor effect */
+.cursor {
+  display: inline-block;
+  width: 8px;
+  height: 16px;
+  background-color: #cdd6f4;
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Loading animation */
+.loading {
+  display: inline-block;
+  margin-left: 0.5rem;
+}
+
+.loading::after {
+  content: '.';
+  animation: dots 1.5s steps(5, end) infinite;
+}
+
+@keyframes dots {
+  0%, 20% { content: '.'; }
+  40% { content: '..'; }
+  60% { content: '...'; }
+  80%, 100% { content: ''; }
+}
+
+.terminal-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.terminal-clear-btn {
+  background-color: transparent;
+  color: #cdd6f4;
+  border: 1px solid #45475a;
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.terminal-clear-btn:hover {
+  background-color: #45475a;
+  color: #cdd6f4;
+} 

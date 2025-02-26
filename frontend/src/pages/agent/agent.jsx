@@ -3,10 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "../../components/ui/card";
-import { ScrollArea } from "../../components/ui/scroll-area";
-import { Badge } from "../../components/ui/badge";
-import { Separator } from "../../components/ui/separator";
-import { Loader2, Terminal, Code, Copy, CheckCircle2 } from "lucide-react";
+import { Loader2, Terminal, Copy, CheckCircle2 } from "lucide-react";
+import "./agent.css";
 
 function Agent() {
     const [input, setInput] = useState('');
@@ -76,92 +74,90 @@ function Agent() {
     };
 
     return (
-        <div className="min-h-screen bg-[#0f1729] text-white">
-            <div className="container mx-auto py-6 px-4">
-                <div className="flex justify-between items-center mb-4">
+        <div className="agent-container">
+            <div className="agent-content">
+                <div className="agent-header">
                     <div>
-                        <h1 className="text-2xl font-bold tracking-tight flex items-center">
-                            <Terminal className="mr-2 h-6 w-6" />
+                        <h1 className="agent-title">
+                            <Terminal className="h-6 w-6" />
                             AI Terminal Agent
                         </h1>
-                        <p className="text-muted-foreground text-sm">
+                        <p className="agent-subtitle">
                             Execute commands and interact with the AI-powered terminal
                         </p>
                     </div>
                     <Button
                         variant="outline"
                         onClick={() => navigate('/dashboard')}
-                        className="text-white border-gray-700 hover:bg-gray-800"
+                        className="border-white hover:bg-white"
                     >
                         Back to Dashboard
                     </Button>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    <div className="lg:col-span-2">
-                        <Card className="border-gray-700 bg-[#1a2236]">
-                            <CardHeader className="border-b border-gray-700 bg-[#151b2e] rounded-t-lg flex flex-row items-center justify-between p-4">
-                                <div className="flex items-center">
-                                    <div className="flex space-x-2 mr-4">
-                                        <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                                        <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                                        <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                                    </div>
-                                    <CardTitle className="text-sm font-medium">terminal</CardTitle>
-                                </div>
-                                <div className="flex items-center">
-                                    <Badge variant="outline" className="text-xs mr-2 bg-blue-900/30 text-blue-400 border-blue-800">
-                                        {isLoading ? "Processing..." : "Ready"}
-                                    </Badge>
-                                    <Button
-                                        variant="ghost"
-                                        size="icon"
-                                        onClick={copyToClipboard}
-                                        className="h-8 w-8 text-gray-400 hover:text-white hover:bg-gray-700"
-                                    >
-                                        {copied ? <CheckCircle2 className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                                    </Button>
+                <div className="agent-grid">
+                    <div>
+                        <Card className="terminal-card">
+                            <CardHeader className="terminal-header">
+                                <CardTitle className="terminal-title">Terminal</CardTitle>
+                                <div className="terminal-status">
+                                    {isLoading ? "Processing..." : "Ready"}
                                 </div>
                             </CardHeader>
-                            <CardContent className="p-0">
-                                <ScrollArea
-                                    ref={terminalRef}
-                                    className="h-[60vh] rounded-b-md bg-[#1a2236] p-4 font-mono text-sm"
+                            <div className="terminal-actions">
+                                <button
+                                    onClick={copyToClipboard}
+                                    className="terminal-copy-button"
+                                    disabled={history.length === 0}
                                 >
+                                    {copied ? (
+                                        <>
+                                            <CheckCircle2 className="h-4 w-4" />
+                                            Copied!
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Copy className="h-4 w-4" />
+                                            Copy
+                                        </>
+                                    )}
+                                </button>
+                            </div>
+                            <CardContent>
+                                <div className="terminal-content" ref={terminalRef}>
                                     {history.length === 0 ? (
-                                        <div className="text-gray-500 italic flex items-center">
-                                            <Code className="mr-2 h-4 w-4" />
-                                            <span>Type a command below to get started...</span>
+                                        <div className="text-white">
+                                            Type a command below to get started...
                                         </div>
                                     ) : (
-                                        <div className="space-y-2">
+                                        <div>
                                             {history.map((item, index) => (
-                                                <div key={index} className="pb-2">
+                                                <div key={index} className="mb-2">
                                                     {item.type === 'input' ? (
-                                                        <div className="flex">
-                                                            <span className="text-green-500 font-semibold">$</span>
-                                                            <span className="ml-2 text-blue-400">{item.content}</span>
+                                                        <div className="terminal-command">
+                                                            <span className="terminal-command-prompt">$</span>
+                                                            <span className="terminal-command-text">{item.content}</span>
                                                         </div>
                                                     ) : item.type === 'error' ? (
-                                                        <div className="text-red-400 pl-4">{item.content}</div>
+                                                        <div className="terminal-error">{item.content}</div>
                                                     ) : (
-                                                        <div className="text-gray-300 whitespace-pre-wrap pl-4 border-l border-gray-700 my-2">{item.content}</div>
+                                                        <div className="terminal-output">{item.content}</div>
                                                     )}
                                                 </div>
                                             ))}
                                             {isLoading && (
-                                                <div className="flex items-center text-yellow-500 animate-pulse">
-                                                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                                <div className="terminal-loading">
+                                                    <Loader2 className="h-4 w-4 mr-2 animate-spin" />
                                                     <span>Processing command...</span>
                                                 </div>
                                             )}
                                         </div>
                                     )}
-                                </ScrollArea>
+                                </div>
                             </CardContent>
-                            <CardFooter className="border-t border-gray-700 p-2">
-                                <form onSubmit={handleSubmit} className="flex w-full gap-2">
-                                    <div className="flex items-center text-green-500 font-mono pr-2">
+                            <CardFooter className="terminal-input-container">
+                                <form onSubmit={handleSubmit} className="w-full flex gap-2">
+                                    <div className="terminal-prompt">
                                         $
                                     </div>
                                     <Input
@@ -170,12 +166,12 @@ function Agent() {
                                         onChange={(e) => setInput(e.target.value)}
                                         placeholder="Type your command..."
                                         disabled={isLoading}
-                                        className="font-mono bg-[#151b2e] border-gray-700 text-white focus:ring-blue-500 focus:border-blue-500"
+                                        className="terminal-input"
                                     />
                                     <Button
                                         type="submit"
                                         disabled={isLoading}
-                                        className="bg-blue-600 hover:bg-blue-700 text-white"
+                                        className="bg-blue-600 hover:bg-blue-700"
                                     >
                                         {isLoading ? (
                                             <>
@@ -189,44 +185,44 @@ function Agent() {
                         </Card>
                     </div>
 
-                    <div className="lg:col-span-1">
-                        <Card className="border-gray-700 bg-[#1a2236]">
-                            <CardHeader className="border-b border-gray-700 bg-[#151b2e] rounded-t-lg">
-                                <CardTitle className="text-lg">Command Reference</CardTitle>
-                                <CardDescription className="text-gray-400">
+                    <div>
+                        <Card className="command-card">
+                            <CardHeader className="command-header">
+                                <CardTitle>Command Reference</CardTitle>
+                                <CardDescription>
                                     Available commands for the terminal
                                 </CardDescription>
                             </CardHeader>
                             <CardContent className="p-4 space-y-4">
-                                <div>
-                                    <h3 className="text-sm font-medium text-blue-400 mb-2">File System</h3>
-                                    <div className="space-y-2">
-                                        <div className="bg-[#151b2e] p-2 rounded border border-gray-700">
-                                            <code className="text-yellow-300">ls -la</code>
-                                            <p className="text-xs text-gray-400 mt-1">List all files with details</p>
+                                <div className="command-section">
+                                    <h3 className="command-section-title">File System</h3>
+                                    <div>
+                                        <div className="command-item">
+                                            <code className="command-code">ls -la</code>
+                                            <p className="command-description">List all files with details</p>
                                         </div>
-                                        <div className="bg-[#151b2e] p-2 rounded border border-gray-700">
-                                            <code className="text-yellow-300">pwd</code>
-                                            <p className="text-xs text-gray-400 mt-1">Show current directory</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <h3 className="text-sm font-medium text-blue-400 mb-2">Python</h3>
-                                    <div className="space-y-2">
-                                        <div className="bg-[#151b2e] p-2 rounded border border-gray-700">
-                                            <code className="text-yellow-300">python -c "print('Hello')"</code>
-                                            <p className="text-xs text-gray-400 mt-1">Run Python code</p>
+                                        <div className="command-item">
+                                            <code className="command-code">pwd</code>
+                                            <p className="command-description">Show current directory</p>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div>
-                                    <h3 className="text-sm font-medium text-blue-400 mb-2">Help</h3>
-                                    <div className="bg-[#151b2e] p-2 rounded border border-gray-700">
-                                        <code className="text-yellow-300">help</code>
-                                        <p className="text-xs text-gray-400 mt-1">Show all available commands</p>
+                                <div className="command-section">
+                                    <h3 className="command-section-title">Python</h3>
+                                    <div>
+                                        <div className="command-item">
+                                            <code className="command-code">python -c "print('Hello')"</code>
+                                            <p className="command-description">Run Python code</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="command-section">
+                                    <h3 className="command-section-title">Help</h3>
+                                    <div className="command-item">
+                                        <code className="command-code">help</code>
+                                        <p className="command-description">Show all available commands</p>
                                     </div>
                                 </div>
                             </CardContent>

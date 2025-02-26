@@ -13,7 +13,7 @@ import Settings from './pages/dashboard/Settings'
 // Layouts and components
 import LandingLayout from './layouts/LandingLayout'
 import NotFound from './pages/NotFound'
-
+import Agent from './pages/agent/agent'
 export default function App() {
   return (
     <Router>
@@ -25,14 +25,17 @@ export default function App() {
           <Route path="/features" element={<FeaturesPage />} />
           <Route path="/pricing" element={<PricingPage />} />
         </Route>
-        
+
         {/* Dashboard pages */}
         <Route path="/dashboard" element={<DashboardLayout />}>
           <Route index element={<DashboardHome />} />
           <Route path="integrations" element={<Integrations />} />
           <Route path="settings" element={<Settings />} />
         </Route>
-        
+
+        {/* Agent pages */}
+        <Route path="/agent" element={<Agent />} />
+
         {/* 404 page */}
         <Route path="*" element={<NotFound />} />
       </Routes>

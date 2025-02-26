@@ -1,21 +1,22 @@
 {
-  "name": "aethera",
+  "name": "ai-terminal-agent",
   "version": "1.0.0",
-  "main": "node_web_extractor.js",
+  "description": "AI agent with terminal access",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev:backend": "python app.py",
+    "dev:frontend": "cd ../frontend && npm run dev",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
-    "@mozilla/readability": "^0.5.0",
-    "axios": "^1.7.9",
-    "express": "^4.21.2",
-    "jsdom": "^26.0.0",
-    "node-fetch": "^3.3.2",
-    "playwright": "^1.50.1"
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
   }
 }

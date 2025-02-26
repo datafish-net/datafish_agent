@@ -1,0 +1,91 @@
+/* Terminal page specific styling */
+.terminal-page {
+  min-height: 100vh;
+  background-color: #0f1729;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.terminal-page-header {
+  text-align: center;
+  padding: 1rem;
+  background-color: #1a2236;
+  border-bottom: 1px solid #374151;
+}
+
+.terminal-page-header h1 {
+  margin: 0;
+  color: white;
+}
+
+.terminal-page-header p {
+  margin: 0.5rem 0 0;
+  color: #9ca3af;
+}
+
+.terminal-page-main {
+  flex: 1;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.terminal-page-footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #1a2236;
+  border-top: 1px solid #374151;
+  color: #9ca3af;
+}
+
+/* Override terminal container styles */
+.terminal-page .terminal-container {
+  background-color: #1a2236;
+  border: 1px solid #374151;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.terminal-page .terminal-header {
+  background-color: #151b2e;
+  border-bottom: 1px solid #374151;
+}
+
+.terminal-page .terminal-title {
+  color: white;
+}
+
+.terminal-page .terminal-output {
+  background-color: #1a2236;
+  color: #d1d5db;
+}
+
+.terminal-page .terminal-input-container {
+  background-color: #151b2e;
+  border-top: 1px solid #374151;
+}
+
+.terminal-page .terminal-input {
+  background-color: #151b2e;
+  color: white;
+  border-color: #374151;
+}
+
+.terminal-page .terminal-button {
+  background-color: #2563eb;
+  color: white;
+}
+
+.terminal-page .terminal-button:hover {
+  background-color: #1d4ed8;
+}
+
+.terminal-page .terminal-clear-btn {
+  border-color: #374151;
+  color: #d1d5db;
+}
+
+.terminal-page .terminal-clear-btn:hover {
+  background-color: #374151;
+} 

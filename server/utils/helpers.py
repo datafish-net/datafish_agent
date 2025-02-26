@@ -19,5 +19,11 @@ Available commands:
 - npm: Node package manager
 - help: Display this help message
 
+AI Commands:
+- ai:<prompt>: Send a prompt to the default AI model
+- ai:model:<model_name> <prompt>: Use a specific AI model
+
 Example: ls -la
+Example: ai:Write a short poem about coding
+Example: ai:model:gpt-4 Explain quantum computing
 """ 

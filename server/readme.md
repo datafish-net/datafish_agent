@@ -73,3 +73,34 @@ Adjust timeout and other settings in `core/config.py`.
 ## License
 
 [MIT License](LICENSE)
+
+# AI Integration
+
+The terminal agent now supports direct interaction with OpenAI models through the `ai:` command prefix.
+
+## Setup
+
+1. Create a `.env` file in the server directory with your OpenAI API key:
+   ```
+   OPENAI_API_KEY=your_openai_api_key_here
+   OPENAI_MODEL=gpt-3.5-turbo
+   ```
+
+2. Install the required dependencies:
+   ```bash
+   pip install python-dotenv aiohttp
+   ```
+
+## Usage
+
+- Send a prompt to the default AI model:
+  ```
+  ai:Write a short poem about coding
+  ```
+
+- Use a specific AI model:
+  ```
+  ai:model:gpt-4 Explain quantum computing
+  ```
+
+The response from the AI model will be displayed in the terminal.

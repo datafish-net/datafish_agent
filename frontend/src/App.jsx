@@ -5,6 +5,7 @@ import AboutPage from './pages/landing/AboutPage';
 import FeaturesPage from './pages/landing/FeaturesPage';
 import PricingPage from './pages/landing/PricingPage';
 import TerminalPage from './pages/terminal/TerminalPage';
+import ChatbotPage from './pages/chatbot/ChatbotPage';
 import LandingLayout from './layouts/LandingLayout';
 import './App.css';
 
@@ -19,9 +20,12 @@ function App() {
           <Route path="/features" element={<FeaturesPage />} />
           <Route path="/pricing" element={<PricingPage />} />
         </Route>
-        
+
         {/* Terminal page */}
         <Route path="/terminal" element={<TerminalPage />} />
+
+        {/* Chatbot page */}
+        <Route path="/chat" element={<ChatbotPage />} />
       </Routes>
     </Router>
   );

@@ -32,3 +32,4 @@ yarn-error.log*
 *.swo
 server/generated_files/hello_world.py
 server/generated_files/weather_report.py
+server/generated_files/hello_script.py

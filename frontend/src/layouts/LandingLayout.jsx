@@ -13,15 +13,16 @@ export default function LandingLayout() {
             <Link to="/features">Features</Link>
             <Link to="/pricing">Pricing</Link>
             <Link to="/about">About</Link>
+            <Link to="/chat">AI Chat</Link>
             <Link to="/terminal" className="nav-button">Terminal</Link>
           </nav>
         </div>
       </header>
-      
+
       <main>
         <Outlet />
       </main>
-      
+
       <footer>
         <div className="footer-content">
           <div className="footer-logo">DataFish</div>
@@ -37,6 +38,7 @@ export default function LandingLayout() {
             </div>
             <div className="footer-column">
               <h4>Resources</h4>
+              <Link to="/chat">AI Chat</Link>
               <Link to="/terminal">Terminal</Link>
             </div>
           </div>
